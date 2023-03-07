@@ -1,0 +1,27 @@
+{
+  "name": "group4-project",
+  "version": "1.0.0",
+  "description": "An amazing app that will blow your socks off!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andykb9b13/group4-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andykb9b13/group4-project/issues"
+  },
+  "homepage": "https://github.com/andykb9b13/group4-project#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "mysql2": "^3.2.0",
+    "sequelize": "^6.29.1"
+  }
+}
