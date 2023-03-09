@@ -8,6 +8,10 @@ router.get("/", async (req, res) => {
   res.render("signup");
 });
 
+router.get("/login", async (req, res) => {
+  res.render("login");
+});
+
 router.get("/all", async (req, res) => {
   try {
     const allUsers = await User.findAll();
