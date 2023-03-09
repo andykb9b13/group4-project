@@ -1,4 +1,4 @@
-# Group 4 Project
+# FitTrack
 
   [![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://lbesson.mit-license.org/)
 
