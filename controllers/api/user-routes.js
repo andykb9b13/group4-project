@@ -1,7 +1,23 @@
-const router = require('express').Router();
-const { User } = require('../../models');
+const router = require("express").Router();
+// changed { User } to User and changed /models to /Models/User
+const User = require("../../Models/User");
 
-router.post('/', async (req, res) => {
+// api/user route
+
+router.get("/", async (req, res) => {
+  res.render("signup");
+});
+
+router.get("/all", async (req, res) => {
+  try {
+    const allUsers = await User.findAll();
+    res.status(200).json(allUsers);
+  } catch (err) {
+    res.status(500).json("could not get users");
+  }
+});
+
+router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
       username: req.body.username,
@@ -15,12 +31,13 @@ router.post('/', async (req, res) => {
 
       res.json(newUser);
     });
+    // res.status(200).json(newUser);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
@@ -29,14 +46,14 @@ router.post('/login', async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: "No user account found!" });
       return;
     }
 
     const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(400).json({ message: 'No user account found!' });
+      res.status(400).json({ message: "No user account found!" });
       return;
     }
 
@@ -45,14 +62,14 @@ router.post('/login', async (req, res) => {
       req.session.username = user.username;
       req.session.loggedIn = true;
 
-      res.json({ user, message: 'You are now logged in!' });
+      res.json({ user, message: "You are now logged in!" });
     });
   } catch (err) {
-    res.status(400).json({ message: 'No user account found!' });
+    res.status(400).json({ message: "No user account found!" });
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
