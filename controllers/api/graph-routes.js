@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Activity } = require("../../Models");
+const { Activity, Goals, Profile, User } = require("../../Models");
 
 // api/graph route
 router.get("/", (req, res) => {
@@ -19,6 +19,17 @@ router.get("/activities", async (req, res) => {
     res.json(activityArr);
   } catch (err) {
     res.status(500).json("error getting activities", err);
+  }
+});
+
+router.get("/goals", async (req, res) => {
+  try {
+    const goals = await Goals.findAll();
+    const goalsArr = goals.map((g) => g.get({ plain: true }));
+    console.log(goalsArr);
+    res.json(goalsArr);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
