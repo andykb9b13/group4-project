@@ -1,6 +1,6 @@
-const ctx = document.getElementById("myChart");
-const second = document.getElementById("secondChart");
-const third = document.getElementById("thirdChart");
+const ctx = document.getElementById("activityGraph");
+// const second = document.getElementById("secondChart");
+// const third = document.getElementById("thirdChart");
 
 const getActivities = async () => {
   try {
@@ -35,12 +35,11 @@ const activityData = async () => {
           data: data.map((row) => row.duration),
           borderWidth: 1,
           backgroundColor: [
-            "rgba(100, 20, 4, 0.5)",
-            "rgba(20, 100, 4, 0.5)",
-            "rgba(4, 20, 100, 0.5)",
-            "rgba(30, 40, 30, 0.5)",
+            "rgba(83, 221, 108, 0.5)",
+            "rgba(86, 99, 138, 0.5)",
+            "rgba(86, 32, 61, 0.5)",
+            "rgba(99, 160, 136, 0.5)",
           ],
-          borderRadius: 20,
         },
       ],
     },

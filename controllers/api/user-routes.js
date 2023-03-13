@@ -4,14 +4,25 @@ const User = require("../../Models/User");
 
 // api/user route
 
-router.get("/", async (req, res) => {
+// hitting the signup page
+router.get("/signup", async (req, res) => {
   res.render("signup");
 });
 
+// hitting the login page
 router.get("/login", async (req, res) => {
   res.render("login");
 });
 
+// router.get("/profile", async (req, res) => {
+//   res.render("profilecard");
+// });
+
+router.get("/log", async (req, res) => {
+  res.render("activitylog");
+});
+
+// getting all users to send to frontend
 router.get("/all", async (req, res) => {
   try {
     const allUsers = await User.findAll();
@@ -21,12 +32,13 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// creating a new user
 router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
       username: req.body.username,
-      password: req.body.password,
       email: req.body.email,
+      password: req.body.password,
     });
 
     req.session.save(() => {
@@ -42,11 +54,12 @@ router.post("/", async (req, res) => {
   }
 });
 
+// logging in a user
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        email: req.body.email,
       },
     });
 
@@ -74,6 +87,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// this route is not used yet (I think)
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
