@@ -25,6 +25,11 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document
-  .querySelector("#form-submit")
-  .addEventListener("click", loginFormHandler);
+const signupRedirect = async (event) => {
+  event.preventDefault();
+  document.location.replace("/signup");
+};
+
+document.querySelector("#loginBtn").addEventListener("click", loginFormHandler);
+
+document.querySelector("#signupBtn").addEventListener("click", signupRedirect);

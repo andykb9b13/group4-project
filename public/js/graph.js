@@ -12,15 +12,15 @@ const getActivities = async () => {
   }
 };
 
-const getGoals = async () => {
-  try {
-    const response = await fetch("/api/graph/goals");
-    const data = response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const getGoals = async () => {
+//   try {
+//     const response = await fetch("/api/graph/goals");
+//     const data = response.json();
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 const activityData = async () => {
   const data = await getActivities();
@@ -31,23 +31,47 @@ const activityData = async () => {
       labels: data.map((row) => row.entry_date),
       datasets: [
         {
-          label: "duration",
+          label: "Duration",
           data: data.map((row) => row.duration),
-          borderWidth: 1,
-          backgroundColor: [
-            "rgba(83, 221, 108, 0.5)",
-            "rgba(86, 99, 138, 0.5)",
-            "rgba(86, 32, 61, 0.5)",
-            "rgba(99, 160, 136, 0.5)",
-          ],
+          borderWidth: 2,
+          borderColor: 'rgb(170, 74, 68)',
+          backgroundColor: 'rgb(170, 74, 68)',
+          type: 'line',
+          order: 0
         },
+        {
+          label: "Distance",
+          data: data.map((row) => row.distance),
+          borderWidth: 2,
+          backgroundColor: 'rgb(0, 0, 255, 0.7)',
+          order: 1
+        }
       ],
     },
     options: {
+      plugin: {
+        title: {
+          display: true,
+          positon: "top",
+          align: "center",
+          text: "Your Weekly Fitness!"
+        }
+      },
       scales: {
         y: {
+          position: "left",
           beginAtZero: true,
+          title: {
+            display: true,
+            text: "Time (Minutes)",
+          }
         },
+        x: {
+          title: {
+            display: true,
+            text: "Date (yyyy-mm-d)",
+          }
+        }
       },
     },
   });
@@ -55,40 +79,40 @@ const activityData = async () => {
 
 activityData();
 
-const goalsData = async () => {
-  const data = await getGoals();
-  new Chart(second, {
-    type: "bar",
-    data: {
-      labels: data.map((row) => row.activity_type),
-      datasets: [
-        {
-          label: "duration",
-          data: data.map((row) => row.duration),
-          borderWidth: 1,
-        },
-      ],
-    },
-  });
-};
+// const goalsData = async () => {
+//   const data = await getGoals();
+//   new Chart(second, {
+//     type: "bar",
+//     data: {
+//       labels: data.map((row) => row.activity_type),
+//       datasets: [
+//         {
+//           label: "duration",
+//           data: data.map((row) => row.duration),
+//           borderWidth: 1,
+//         },
+//       ],
+//     },
+//   });
+// };
 
-goalsData();
+// goalsData();
 
-const myData3 = async () => {
-  const data = await getData();
-  new Chart(third, {
-    type: "polarArea",
-    data: {
-      labels: data.map((row) => row.entry_date),
-      datasets: [
-        {
-          label: "duration",
-          data: data.map((row) => row.duration),
-          borderWidth: 1,
-        },
-      ],
-    },
-  });
-};
+// const myData3 = async () => {
+//   const data = await getData();
+//   new Chart(third, {
+//     type: "polarArea",
+//     data: {
+//       labels: data.map((row) => row.entry_date),
+//       datasets: [
+//         {
+//           label: "duration",
+//           data: data.map((row) => row.duration),
+//           borderWidth: 1,
+//         },
+//       ],
+//     },
+//   });
+// };
 
-myData3();
+// myData3();
