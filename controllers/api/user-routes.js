@@ -38,7 +38,7 @@ router.get("/activities", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
     });
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
 
     req.session.save(() => {
       req.session.userId = newUser.user_id;
-      req.session.username = newUser.username;
+      req.session.email = newUser.email;
       req.session.loggedIn = true;
 
       res.json(newUser);
@@ -81,7 +81,7 @@ router.post("/login", async (req, res) => {
 
     req.session.save(() => {
       req.session.userId = user.user_id;
-      req.session.username = user.username;
+      req.session.email = user.email;
       req.session.loggedIn = true;
 
       res.json({ user, message: "You are now logged in!" });

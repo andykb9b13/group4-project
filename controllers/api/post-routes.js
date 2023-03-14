@@ -9,10 +9,8 @@ router.post("/activity", withAuth, async (req, res) => {
     const newActivity = await Activity.create({
       user_id: req.session.userId,
       entry_date: req.body.entry_date,
-      activity_type: req.body.activity_type,
       duration: req.body.duration,
       distance: req.body.distance,
-      instensity: req.body.intensity,
     });
     res.status(200).json(newActivity);
     alert("New Activity Created!");

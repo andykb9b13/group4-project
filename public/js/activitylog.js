@@ -12,20 +12,16 @@ const addActivity = async (event) => {
   event.preventDefault();
 
   const entry_date = "2023-3-19";
-  const activity_type = "Running";
   const duration = document.querySelector("#duration").value;
   const distance = document.querySelector("#distance").value;
-  const intensity = document.querySelector("#intensity").value;
 
   try {
     const response = await fetch("/api/post/activity", {
       method: "POST",
       body: JSON.stringify({
-        activity_type,
         entry_date,
         duration,
         distance,
-        intensity,
       }),
       headers: { "Content-Type": "application/json" },
     });
