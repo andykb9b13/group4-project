@@ -106,7 +106,7 @@ router.post("/add/newActivity", async (req, res) => {
   console.log("hitting api/user/newActivity post route");
   console.log("this is the req.session", req.session);
   try {
-    const newActivity = await Activity.create({
+    await Activity.create({
       user_id: req.session.userId,
       entry_date: req.body.entry_date,
       duration: req.body.duration,
