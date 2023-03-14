@@ -3,19 +3,23 @@ const { Post } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 // removed withAuth middleware
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   const body = req.body;
 
   try {
-    const newPost = await Post.create({ ...body, userId: req.session.userId });
-    res.json(newPost);
+    const newActivity = await Activity.create({
+      ...body,
+      userId: req.session.userId,
+    });
+    res.status(200).json(newActivity);
+    alert("New Activity Created!");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // removed withAuth middleware
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const [affectedRows] = await Post.update(req.body, {
       where: {
@@ -34,7 +38,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // removed withAuth middleware
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const [affectedRows] = Post.destroy({
       where: {
