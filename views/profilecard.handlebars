@@ -1,13 +1,16 @@
 <section class="container-fluid space-between p-4 row ps-2">
         <!-- Container for profile-pic -->
 <div class="col-md-4 col-sm-12 mx-auto pr-1 border" id="user-profile-card">
-<a href="https://www.example.com">
-  <i class="fas fa-home"></i>
+<a href="<!-- link to edit profile-->" class ="row justify-content-end text-decoration-none" id="edit-profile">
+<i class="fa-solid fa-gear fa-3x p-3 "></i>
 </a>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" class="card-img-top img-fluid p-5" alt="profile-image">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" class="card-img-top mw-25 p-4" alt="profile-image">
     <div class="card-body">
       <h2 class="card-title">{{userData.name}}</h2>
-      <p class="card-text">Email: {{userData.email}} </p>
+      <h4 class="card-text">Location Placeholder{{userData.location}}</h3>
+      <p class="card-text">Height: {{userData.height}} </p>
+      <p class="card-text">Starting Weight: {{userData.starting_weight}} </p>
+
     </div>
   </div>
 </div>
