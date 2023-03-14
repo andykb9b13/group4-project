@@ -1,13 +1,25 @@
-<div class='container'>
-    <div id ="profilecard">
-        <h2>Welcome, Chris!</h2>
-        <!--Profile Image location... will need to update to match user profile while logged in-->
-        <img src="/assets/images/test-profile-image.jpeg" class="img-thumbnail" alt="..." style="width: 200px; height: 200px;">
-        <h4 id = "location">Madison, WI</h4>
-        <h4 id = "currentweight">Current Weight: 300 lbs.</h4>
-        <h4 id = "fitnessgoal">Fitness Goal: See Me at the Gym </h4>
-    </div>
-</div>
+ <!-- If logged in main body of site -->
+    <section class="container-fluid mt-4">
+        <div class="row">
+            <!-- Container for profile-pic -->
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" class="card-img-top" alt="profile-image">
+                    <div class="card-body">
+                    <h2 class ="card-title">{{user.name}}</h2>
+                    <p class="card-text">Height: </p>
+                    <p class="card-text">{{user.height}}</p>
+                    <p class="card-text">Weight: </p>
+                    <p class="card-text">{{user.weight}}</p>
+                    <p class="card-text">Location:</p>
+                    <p class="card-text">{{user.location}}</p>
+                    </div>
+                </div>
+            </div>
 
-
-{{> activityGraph}}
+            <div class="col-lg-8">
+                {{> activityGraph}}
+            </div>
+        </div>
+    </section>
+    
