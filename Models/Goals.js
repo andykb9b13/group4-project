@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Activity extends Model {}
+class Goals extends Model {}
 
-Activity.init(
+Goals.init(
   {
-    activityLog_id: {
+    goalsLog_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -18,17 +18,17 @@ Activity.init(
         key: "user_id",
       },
     },
-    entry_date: {
+    week_of: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     activity_type: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     duration: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     distance: {
       type: DataTypes.INTEGER,
@@ -36,7 +36,7 @@ Activity.init(
     },
     intensity: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
@@ -44,8 +44,8 @@ Activity.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "activity",
+    modelName: "goals",
   }
 );
 
-module.exports = Activity;
+module.exports = Goals;

@@ -1,5 +1,6 @@
 const User = require('./User');
 const Profile = require('./Profile');
+const Goals  = require('./Goals');
 const Activity = require('./Activitylog');
 
 User.hasOne(Profile, {
@@ -10,6 +11,7 @@ Profile.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
+
 User.hasMany(Activity, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
@@ -19,4 +21,12 @@ Activity.belongsTo(User, {
 })
 
 
-module.exports = { User, Profile, Activity };
+User.hasMany(Goals, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE',
+});
+Goals.belongsTo(User, {
+    foreignKey: 'driver_id',
+});
+
+module.exports = { User, Profile, Activity, Goals };

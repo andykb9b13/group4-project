@@ -4,14 +4,23 @@ const User = require("../../Models/User");
 
 // api/user route
 
-router.get("/", async (req, res) => {
-  res.render("signup");
+// get the current user
+
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findOne(req.body.params, {
+      where: {
+        user_id: req.params.id,
+      },
+    });
+    const userData = user.map((u) => u.get({ plain: true }));
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.get("/login", async (req, res) => {
-  res.render("login");
-});
-
+// getting all users to send to frontend
 router.get("/all", async (req, res) => {
   try {
     const allUsers = await User.findAll();
@@ -21,12 +30,13 @@ router.get("/all", async (req, res) => {
   }
 });
 
+// creating a new user
 router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
       username: req.body.username,
-      password: req.body.password,
       email: req.body.email,
+      password: req.body.password,
     });
 
     req.session.save(() => {
@@ -42,11 +52,12 @@ router.post("/", async (req, res) => {
   }
 });
 
+// logging in a user
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        email: req.body.email,
       },
     });
 
@@ -63,7 +74,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.userId = user.id;
+      req.session.userId = user.user_id;
       req.session.username = user.username;
       req.session.loggedIn = true;
 
@@ -74,6 +85,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// this route is not used yet (I think)
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
