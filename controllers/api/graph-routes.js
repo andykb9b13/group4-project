@@ -7,12 +7,17 @@ router.get("/", (req, res) => {
 });
 
 // getting array of activities to send to frontend
-router.get("/activities", async (req, res) => {
+router.get("/all/activities", async (req, res) => {
   try {
-    const activities = await Activity.findAll();
-    const activityArr = activities.map((a) => a.get({ plain: true }));
-    console.log(activityArr);
-    res.json(activityArr);
+    const activities = await Activity.findAll({
+      where: {
+        user_id: req.session.userId,
+      },
+    });
+    // const activityArr = activities.map((a) => a.get({ plain: true }));
+    // console.log(activityArr);
+    // res.json(activityArr);
+    res.json(activities);
   } catch (err) {
     res.status(500).json("error getting activities", err);
   }
