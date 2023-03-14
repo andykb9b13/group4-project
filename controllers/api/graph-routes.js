@@ -19,15 +19,16 @@ router.get("/activities", async (req, res) => {
 });
 
 // getting array of goals to send to frontend
-router.get("/goals", async (req, res) => {
-  try {
-    const goals = await Goals.findAll();
-    const goalsArr = goals.map((g) => g.get({ plain: true }));
-    console.log(goalsArr);
-    res.json(goalsArr);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
+// router.get("/goals", async (req, res) => {
+//   try {
+//     const goals = await Goals.findAll();
+//     const goalsArr = goals.map((g) => g.get({ plain: true }));
+//     console.log(goalsArr);
+//     res.json(goalsArr);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
