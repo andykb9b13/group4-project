@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../Models/User");
 
 // getting the profile page with user info
+// There's a problem with this function when it get called after signing up.
 router.get("/profile", async (req, res) => {
   try {
     console.log(req.session);
