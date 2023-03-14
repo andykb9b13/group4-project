@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { Post } = require("../../models/");
+const Activity = require("../../Models/Activitylog");
 const withAuth = require("../../utils/auth");
 
-router.post("/activity", withAuth, async (req, res) => {
+router.post("/newActivity", withAuth, async (req, res) => {
   const body = req.body;
 
   try {

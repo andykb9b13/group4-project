@@ -91,7 +91,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// this route is not used yet (I think)
+// ending a user session
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -99,6 +99,22 @@ router.post("/logout", (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.post("/add/newActivity", async (req, res) => {
+  console.log("hitting api/user/newActivity post route");
+  console.log("this is the req.session", req.session);
+  try {
+    const newActivity = await Activity.create({
+      user_id: req.session.userId,
+      entry_date: req.body.entry_date,
+      duration: req.body.duration,
+      distance: req.body.distance,
+    });
+    res.status(200).json("activity created");
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
