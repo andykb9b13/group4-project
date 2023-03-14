@@ -4,20 +4,6 @@ const User = require("../../Models/User");
 
 // api/user route
 
-// hitting the signup page
-router.get("/signup", async (req, res) => {
-  res.render("signup");
-});
-
-// hitting the login page
-router.get("/login", async (req, res) => {
-  res.render("login");
-});
-
-// router.get("/profile", async (req, res) => {
-//   res.render("profilecard");
-// });
-
 router.get("/log", async (req, res) => {
   res.render("activitylog");
 });
