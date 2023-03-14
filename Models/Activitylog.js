@@ -23,10 +23,6 @@ Activity.init(
             type:DataTypes.DATEONLY,
             allowNull: false,
         },
-        activity_type:{
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
         duration:{
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -35,10 +31,6 @@ Activity.init(
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        intensity:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
     },
     {
         sequelize,
