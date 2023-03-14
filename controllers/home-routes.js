@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../Models/User");
 
+// getting the profile page with user info
 router.get("/profile", async (req, res) => {
   try {
     console.log(req.session);
@@ -15,6 +16,14 @@ router.get("/profile", async (req, res) => {
     res.render("profilecard", { userData });
   } catch (err) {
     console.log("here is profile error", err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/activity", async (req, res) => {
+  try {
+    res.render("activitylog");
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -34,18 +43,38 @@ router.get("/profile", async (req, res) => {
 //   }
 // });
 
+router.get("/activity", async (req, res) => {
+  try {
+    res.render("activitylog");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // hitting the signup page
 router.get("/signup", async (req, res) => {
-  res.render("signup");
+  try {
+    res.status(200).render("signup");
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // hitting the login page
 router.get("/login", async (req, res) => {
-  res.render("login");
+  try {
+    res.status(200).render("login");
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get("/log", async (req, res) => {
-  res.render("activitylog");
+  try {
+    res.status(200).render("activitylog");
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
