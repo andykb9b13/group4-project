@@ -4,29 +4,27 @@ const User = require("../../Models/User");
 
 // api/user route
 
-// get the current user
-
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   try {
-    const user = await User.findOne(req.body.params, {
+    const user = await User.findOne({
       where: {
         user_id: req.params.id,
       },
     });
-    const userData = user.map((u) => u.get({ plain: true }));
-    res.status(200).json(userData);
+    // const userData = user.map((u) => u.get({ plain: true }));
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // getting all users to send to frontend
-router.get("/all", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const allUsers = await User.findAll();
     res.status(200).json(allUsers);
   } catch (err) {
-    res.status(500).json("could not get users");
+    res.status(500).json("could not get users", err);
   }
 });
 

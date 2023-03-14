@@ -9,7 +9,11 @@ router.get("/", (req, res) => {
 // getting array of activities to send to frontend
 router.get("/activities", async (req, res) => {
   try {
-    const activities = await Activity.findAll();
+    const activities = await Activity.findAll({
+      where: {
+        user_id: req.session.userId,
+      },
+    });
     const activityArr = activities.map((a) => a.get({ plain: true }));
     console.log(activityArr);
     res.json(activityArr);
