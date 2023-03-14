@@ -12,15 +12,15 @@ const getActivities = async () => {
   }
 };
 
-const getGoals = async () => {
-  try {
-    const response = await fetch("/api/graph/goals");
-    const data = response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const getGoals = async () => {
+//   try {
+//     const response = await fetch("/api/graph/goals");
+//     const data = response.json();
+//     return data;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 const activityData = async () => {
   const data = await getActivities();
@@ -55,40 +55,40 @@ const activityData = async () => {
 
 activityData();
 
-const goalsData = async () => {
-  const data = await getGoals();
-  new Chart(second, {
-    type: "bar",
-    data: {
-      labels: data.map((row) => row.activity_type),
-      datasets: [
-        {
-          label: "duration",
-          data: data.map((row) => row.duration),
-          borderWidth: 1,
-        },
-      ],
-    },
-  });
-};
+// const goalsData = async () => {
+//   const data = await getGoals();
+//   new Chart(second, {
+//     type: "bar",
+//     data: {
+//       labels: data.map((row) => row.activity_type),
+//       datasets: [
+//         {
+//           label: "duration",
+//           data: data.map((row) => row.duration),
+//           borderWidth: 1,
+//         },
+//       ],
+//     },
+//   });
+// };
 
-goalsData();
+// goalsData();
 
-const myData3 = async () => {
-  const data = await getData();
-  new Chart(third, {
-    type: "polarArea",
-    data: {
-      labels: data.map((row) => row.entry_date),
-      datasets: [
-        {
-          label: "duration",
-          data: data.map((row) => row.duration),
-          borderWidth: 1,
-        },
-      ],
-    },
-  });
-};
+// const myData3 = async () => {
+//   const data = await getData();
+//   new Chart(third, {
+//     type: "polarArea",
+//     data: {
+//       labels: data.map((row) => row.entry_date),
+//       datasets: [
+//         {
+//           label: "duration",
+//           data: data.map((row) => row.duration),
+//           borderWidth: 1,
+//         },
+//       ],
+//     },
+//   });
+// };
 
-myData3();
+// myData3();
