@@ -5,6 +5,7 @@ const profileSeedData = require("./profileData");
 const activitySeedData = require("./activityLogData");
 // const goalSeedData = require("./goalData");
 
+
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 

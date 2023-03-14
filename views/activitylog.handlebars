@@ -1,30 +1,39 @@
 <div class="container">
   <h2>Enter your activity</h2>
-  <form>
     <div id="calendar">
-      <h4>Select a date</h4>
+      <span class="input-group-text" id="inputGroup-sizing-sm">Enter a date
+        YYYY-MM-DD</span>
+      <input
+        type="text"
+        class="form-control"
+        id="date"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
     </div>
-    <div class="form-floating">
+    {{! <div class="form-floating">
+      <label for="activitySelect">Please choose an activity</label>
       <select
         class="form-select"
-        id="floatingSelect"
+        id="activitySelect"
         aria-label="Floating label select example"
       >
         <option selected>Select Your Activity</option>
-        <option value="1">Running</option>
-        <option value="2">Biking</option>
-        <option value="3">Swimming</option>
+        <option value="Running">Running</option>
+        <option value="Biking">Biking</option>
+        <option value="Swi">Swimming</option>
       </select>
-      <label for="floatingSelect">Please choose an activity</label>
-    </div>
+
+    </div> }}
     <div class="input-group input-group-sm mb-3">
       <span
         class="input-group-text"
-        id="inputGroup-sizing-sm"
+        id="durationLabel"
       >Duration(minutes):</span>
       <input
         type="text"
         class="form-control"
+        id="duration"
         aria-label="Sizing example input"
         aria-describedby="inputGroup-sizing-sm"
       />
@@ -37,14 +46,15 @@
       <input
         type="text"
         class="form-control"
+        id="distance"
         aria-label="Sizing example input"
         aria-describedby="inputGroup-sizing-sm"
       />
     </div>
-    <div class="form-floating">
+    {{! <div class="form-floating">
       <select
         class="form-select"
-        id="floatingSelect"
+        id="intensity"
         aria-label="Floating label select example"
       >
         <option selected>Select Intensity Level</option>
@@ -54,8 +64,8 @@
         <option value="4">4 - Feel the high!</option>
         <option value="5">5 - No one can stop me!!</option>
       </select>
-      <label for="floatingSelect">Please choose intensity</label>
-    </div>
+      <label for="intensity">Please choose intensity</label>
+    </div> }}
     <div class="input-group input-group-sm mb-3">
       <span class="input-group-text" id="inputGroup-sizing-sm">Weigh
         In:(optional)</span>
@@ -66,6 +76,10 @@
         aria-describedby="inputGroup-sizing-sm"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
+    <button type="submit" class="btn btn-primary" id="profileBtn">Back to
+      Profile</button>
   </form>
 </div>
+
+<script src="/js/activitylog.js"></script>
