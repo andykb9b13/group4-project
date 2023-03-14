@@ -19,6 +19,7 @@ router.get("/activities", async (req, res) => {
 });
 
 // getting array of goals to send to frontend
+
 // router.get("/goals", async (req, res) => {
 //   try {
 //     const goals = await Goals.findAll();
