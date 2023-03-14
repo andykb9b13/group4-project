@@ -1,6 +1,7 @@
 const router = require("express").Router();
 // changed { User } to User and changed /models to /Models/User
 const User = require("../../Models/User");
+const Activity = require("../../Models/Activitylog");
 
 // api/user route
 
@@ -26,6 +27,11 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(500).json("could not get users", err);
   }
+});
+
+router.get("/activities", async (req, res) => {
+  const allActivities = await Activity.findAll();
+  res.status(200).json(allActivities);
 });
 
 // creating a new user

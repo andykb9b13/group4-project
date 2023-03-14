@@ -20,14 +20,6 @@ router.get("/profile", async (req, res) => {
   }
 });
 
-router.get("/activity", async (req, res) => {
-  try {
-    res.render("activitylog");
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 // router.get("/profile", async (req, res) => {
 //   try {
 //     const activities = await Activity.findAll({
@@ -43,6 +35,7 @@ router.get("/activity", async (req, res) => {
 //   }
 // });
 
+// hitting the activitylog page
 router.get("/activity", async (req, res) => {
   try {
     res.render("activitylog");
