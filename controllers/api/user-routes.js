@@ -4,8 +4,20 @@ const User = require("../../Models/User");
 
 // api/user route
 
-router.get("/log", async (req, res) => {
-  res.render("activitylog");
+// get the current user
+
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findOne(req.body.params, {
+      where: {
+        user_id: req.params.id,
+      },
+    });
+    const userData = user.map((u) => u.get({ plain: true }));
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // getting all users to send to frontend
@@ -62,7 +74,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.userId = user.id;
+      req.session.userId = user.user_id;
       req.session.username = user.username;
       req.session.loggedIn = true;
 
