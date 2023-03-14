@@ -4,11 +4,11 @@ const ctx = document.getElementById("activityGraph");
 
 const getActivities = async () => {
   try {
-    const response = await fetch("/api/graph/activities", {
+    const response = await fetch("/api/graph/all/activities", {
       method: "GET",
     });
     console.log("This is the response for getActivities", response);
-    return response;
+    return response.json();
   } catch (err) {
     console.log(err);
   }

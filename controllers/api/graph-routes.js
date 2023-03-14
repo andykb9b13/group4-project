@@ -14,10 +14,9 @@ router.get("/all/activities", async (req, res) => {
         user_id: req.session.userId,
       },
     });
-    // const activityArr = activities.map((a) => a.get({ plain: true }));
-    // console.log(activityArr);
-    // res.json(activityArr);
-    res.json(activities);
+    const activityArr = activities.map((a) => a.get({ plain: true }));
+    console.log("This is activityArr in api/graph route", activityArr);
+    res.json(activityArr);
   } catch (err) {
     res.status(500).json("error getting activities", err);
   }

@@ -2,7 +2,15 @@
   <h2>Enter your activity</h2>
   <form>
     <div id="calendar">
-      <h4>Select a date</h4>
+      <span class="input-group-text" id="inputGroup-sizing-sm">Enter a date
+        YYYY-MM-DD</span>
+      <input
+        type="text"
+        class="form-control"
+        id="date"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm"
+      />
     </div>
     {{! <div class="form-floating">
       <label for="activitySelect">Please choose an activity</label>
@@ -21,7 +29,7 @@
     <div class="input-group input-group-sm mb-3">
       <span
         class="input-group-text"
-        id="inputGroup-sizing-sm"
+        id="durationLabel"
       >Duration(minutes):</span>
       <input
         type="text"
@@ -70,6 +78,8 @@
       />
     </div>
     <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
+    <button type="submit" class="btn btn-primary" id="profileBtn">Back to
+      Profile</button>
   </form>
 </div>
 

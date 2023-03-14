@@ -14,4 +14,12 @@ const logout = async () => {
   }
 };
 
+const activityRedirect = async (event) => {
+  event.preventDefault();
+  document.location.replace("/activity");
+};
+
 document.querySelector("#logoutBtn").addEventListener("click", logout);
+document
+  .querySelector("#activityBtn")
+  .addEventListener("click", activityRedirect);
