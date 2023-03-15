@@ -6,21 +6,7 @@ const Profile = require("../../Models/Profile");
 
 // api/user route
 
-router.get("/id/:id", async (req, res) => {
-  try {
-    const user = await User.findOne({
-      where: {
-        user_id: req.params.id,
-      },
-    });
-    // const userData = user.map((u) => u.get({ plain: true }));
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// getting all users to send to frontend
+// getting all users, mainly for viewing in Insomnia for now
 router.get("/", async (req, res) => {
   try {
     const allUsers = await User.findAll();
@@ -30,6 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// getting all activities, mainly for viewing in Insomnia for now
 router.get("/activities", async (req, res) => {
   const allActivities = await Activity.findAll();
   res.status(200).json(allActivities);
@@ -103,9 +90,8 @@ router.post("/logout", (req, res) => {
   }
 });
 
+// ading a new activity
 router.post("/add/newActivity", async (req, res) => {
-  console.log("hitting api/user/newActivity post route");
-  console.log("this is the req.session", req.session);
   try {
     await Activity.create({
       user_id: req.session.userId,
@@ -119,6 +105,7 @@ router.post("/add/newActivity", async (req, res) => {
   }
 });
 
+// getting all profiles, mainly for viewing in Insomnia for now
 router.get("/edit/profile", async (req, res) => {
   try {
     const allProfiles = await Profile.findAll();
@@ -145,7 +132,7 @@ router.post("/edit/profile", async (req, res) => {
   }
 });
 
-// edit an existing user profile
+// edit an existing user profile (still needs work)
 router.put("/edit", async (req, res) => {
   try {
     const [affectedRows] = await Profile.update(req.body, {
@@ -164,5 +151,19 @@ router.put("/edit", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// router.get("/id/:id", async (req, res) => {
+//   try {
+//     const user = await User.findOne({
+//       where: {
+//         user_id: req.params.id,
+//       },
+//     });
+//     // const userData = user.map((u) => u.get({ plain: true }));
+//     res.status(200).json(user);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
